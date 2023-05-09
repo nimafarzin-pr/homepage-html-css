@@ -1,0 +1,295 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* -------------------------- Navbar -------------------------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  margin: 4em;
+}
+
+/* if we have more than one nav ul we can use class name and select that spacific to apply style */
+nav ul {
+  list-style-type: none;
+  display: flex;
+  /* em for scale or margin padding and so on */
+  gap: 4.1em;
+  margin: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  /* rem for font size */
+  font-size: 1.6rem;
+  position: relative;
+}
+
+nav ul li a.active::before {
+  position: absolute;
+  content: "";
+  width: 35%;
+  height: 1px;
+  border-bottom: 2px solid black;
+  bottom: -6px;
+}
+
+/* growable under line style for navigation items */
+nav ul li a:before{
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 1px;
+  border-bottom: 2px solid gray;
+  bottom: -6px;
+  transition: width .3s;
+}
+
+/* -------------------------- Hero Section -------------------------- */
+main {
+  display: flex;
+  gap: 8em;
+  margin-top: 11em;
+}
+
+.left-col {
+  width: 45%;
+}
+
+.right-col {
+  flex-grow: 1;
+}
+
+h1 {
+  font-size: 5.2rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin: 0;
+}
+
+
+.sub-head {
+  font-size: 1.6rem;
+}
+
+.cta-btns,
+.secondary-cta {
+  display: flex;
+  gap: 2em;
+}
+
+.primary-cta {
+  background-color: palevioletred;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  border-radius: 1.9em;
+  padding: 1em 2em;
+}
+
+.secondary-cta {
+  font-size: 1.8rem;
+  text-decoration: none;
+  color: black;
+  display: block;
+  padding: 1em 0;
+  align-items: center;
+
+}
+
+
+.secondary-cta svg {
+  /* px not effect when scale or zoomin and zoomout happen */
+  width: 20px;
+  transition: transform .3s;
+
+}
+
+.news {
+  display: flex;
+  gap: 3em;
+  margin-top: 3em;
+  padding: 5em;
+  border: 1px solid gray;
+  border-radius: .8em;
+  position: relative;
+}
+
+.news::before {
+  position: absolute;
+  content: "";
+  background: url('../images/gift.svg') no-repeat;
+  width: 100px;
+  height: 100px;
+  top: -30px;
+  left: -40px;
+  z-index: 2;
+}
+
+p.employee {
+  font-size: 3.3rem;
+  margin: 0;
+  font-weight: 200;
+}
+
+p.details {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+/* -------------------------- right column gallery -------------------------- */
+.right-col {
+  display: grid;
+  gap: 2.3em;
+  /* repeat(2,auto) except auto auto  */
+  grid-template-columns: repeat(2, auto);
+  /* for align grid like |= */
+  grid-template-areas:
+    "left right"
+    "left bottom"
+  ;
+}
+
+.card {
+  background: grey;
+  border-radius: .8em;
+  padding: 1.1em;
+  display: flex;
+  align-items: end;
+  background-size: 150%;
+  transition: background-size 800ms;
+}
+
+.card1 {
+  /* take left full column */
+  grid-area: left;
+  background-image: url('../images/flower.jpg') ;
+  position: relative;
+
+}
+.card1:before{
+  position: absolute;
+  content: "";
+  background: url('../images/gift.svg') no-repeat;
+  width: 100%;
+  height: 100%;
+  top: -100px;
+  left: -100px;
+  /* because our sizes relevent to absolute and maybe our click event cant be use then we use below code */
+  pointer-events: none;
+}
+
+.card2 {
+  grid-area: right;
+  background-image: url('../images/apple.jpg') ;
+
+}
+
+.card3 {
+  grid-area: bottom;
+  background-image: url('../images/fruit.jpg');
+
+}
+
+
+.card-details {
+  background-color: white;
+  border-radius: 1em;
+  padding: 2em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 800ms;
+}
+
+.card-details a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.card-details p {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+
+p.product-price {
+  font-size: 1.8rem;
+}
+
+
+/* -------------------------- microinteractions -------------------------- */
+nav ul li a:hover:before{
+  width: 35%;
+}
+
+.primary-cta:hover{
+  background: #FCCFEC;
+}
+
+.secondary-cta:hover svg{
+  transform: translate(10px);
+} 
+
+.secondary-cta:hover{
+  text-decoration: underline;
+}
+
+.card:hover{
+  background-size: 160%;
+}
+
+.card:hover .card-details{
+  transform: translateY(-20px);
+}
+
+/* -------------------------- intro animation -------------------------- */
+.overlay{
+  position: absolute;
+  z-index: 999;
+  background: white ;
+  width: 100%;
+  height: 100%;
+  /* reveal is name of animatin and that can be anything */
+  animation: reveal 1s ease-in forwards;
+  transform-origin: bottom ;
+}
+
+@keyframes reveal {
+  from{
+    transform: scaleY(1);
+  }
+  to{
+    transform: scaleY(0);
+  }
+}
+
+main{
+  animation: growIn 2s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+  transform: scale(.4);
+}
+
+@keyframes growIn {
+  to{
+    transform: scale(1);
+  }
+}
